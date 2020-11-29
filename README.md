@@ -84,11 +84,13 @@ See below for a more detailed list of features.
 
 ## Setup Instructions
 
-1.  Generate a copy of this repo by clicking [on this link](https://github.com/fastai/fastpages/generate).  Name your repo anything you like **except** {your-username}.github.io.
+1. Generate a copy of this repo by clicking [on this link](https://github.com/fastai/fastpages/generate).
+   - Recall, **to select the checkbox `Include all branches`**.
 
-2. **GitHub Actions will automatically open a PR** on your new repository ~ 30 seconds after the copy is created.  Follow the instructions in that PR to continue.
+2. Navigate to your repo Settings tab, and in the GitHub Pages section, enable `gh-pages` as your Source branch.
 
->If you are not seeing a PR, please make sure you have third party actions enabled in your organization: **Settings -> Actions -> Actions Permissions -> Enable local and third party Actions for this repository**
+3. After ~30 seconds, your site will be deployed and accessible.
+
 
 For a live walk-through of the setup steps (with some additional tips) see this [video tutorial of setting up a fastpages blog](https://youtu.be/L0boq3zqazI) by Abdul Majed.
 
@@ -404,6 +406,7 @@ You may want some code to be hidden in a collapsed element that the user can exp
 
 - To include code in a collapsable cell that **is collapsed by default**, place the comment `#collapse` at the top of the code cell.
 - To include code in a collapsable cell that **is open by default**, place the comment `#collapse_show` or `#collapse-show` at the top of the code cell.
+- To include the output under a collapsable element that is closed by default, place the comment `#collapse_output` or `#collapse-output` at the top of the code cell.
 
 ### Embedded Twitter and YouTube Content
 In a markdown cell in your notebook, use the following markdown shortcuts to embed Twitter cards and YouTube Videos.

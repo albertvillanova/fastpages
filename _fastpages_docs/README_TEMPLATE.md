@@ -8,7 +8,6 @@ https://{_username_}.github.io{_baseurl_}
 
 # My Blog
 
-
 _powered by [fastpages](https://github.com/fastai/fastpages)_
 
 
@@ -25,5 +24,21 @@ Great!  You have setup your repo.  Now its time to start writing content.  Some 
 - [(Optional) Preview Your Blog Locally](_fastpages_docs/DEVELOPMENT.md)
 
 Note: you may want to remove example blog posts from the `_posts`,  `_notebooks` or `_word` folders (but leave them empty, don't delete these folders) if you don't want these blog posts to appear on your site.
+
+Please use the [nbdev & blogging channel](https://forums.fast.ai/c/fastai-users/nbdev/48) in the fastai forums for any questions or feature requests.
+
+
+## Optional: Using a Custom Domain
+
+1. After merging this PR, add a file named `CNAME` at the root of your repo.  For example, the `fastpages` blog is hosted at `https://fastpages.fast.ai`, which means [our CNAME](https://github.com/fastai/fastpages/blob/master/CNAME) contains the following contents:
+
+    >`fastpages.fast.ai`
+
+2. Change the `url` and `baseurl` parameters in your `/_config.yml` file to reflect your custom domain.
+
+    Wondering how to setup a custom domain?  See [this article](https://dev.to/trentyang/how-to-setup-google-domain-for-github-pages-1p58).  You must add a CNAME file to the root of your master branch for the intructions in the article to work correctly.
+
+
+## Questions
 
 Please use the [nbdev & blogging channel](https://forums.fast.ai/c/fastai-users/nbdev/48) in the fastai forums for any questions or feature requests.

@@ -7,9 +7,8 @@ on:
   pull_request:
   workflow_dispatch:
 
-jobs:     
+jobs:
   build-site:
-    if: ( github.event.commits[0].message != 'Initial commit' ) || github.run_number > 1
     runs-on: ubuntu-latest
     steps:
 
@@ -32,7 +31,7 @@ jobs:
         args: bash -c "jekyll build -V --strict_front_matter --trace"
       env:
         JEKYLL_ENV: 'production'
-        
+
     - name: copy CNAME file into _site if CNAME exists
       run: |
         sudo chmod -R 777 _site/

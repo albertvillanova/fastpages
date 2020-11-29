@@ -84,11 +84,12 @@ See below for a more detailed list of features.
 
 ## Setup Instructions
 
-1.  Generate a copy of this repo by clicking [on this link](https://github.com/fastai/fastpages/generate).
+1. Generate a copy of this repo by clicking [on this link](https://github.com/fastai/fastpages/generate).
 
-2. **GitHub Actions will automatically open a PR** on your new repository ~ 30 seconds after the copy is created.  Follow the instructions in that PR to continue.
+2. Wait for ~30 seconds, until your site is built and deployed.
 
->If you are not seeing a PR, please make sure you have third party actions enabled in your organization: **Settings -> Actions -> Actions Permissions -> Enable local and third party Actions for this repository**
+3. Navigate to your repo Settings tab, and in the GitHub Pages section, enable `gh-pages` as your Source branch. Click Save.
+
 
 For a live walk-through of the setup steps (with some additional tips) see this [video tutorial of setting up a fastpages blog](https://youtu.be/L0boq3zqazI) by Abdul Majed.
 

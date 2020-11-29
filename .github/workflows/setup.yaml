@@ -1,9 +1,9 @@
 name: Setup
-on: push
+on: create
 
 jobs:
   setup:
-    if: (github.event.commits[0].message == 'Initial commit') && (github.run_number == 1)
+    if: github.event.ref_type == 'branch' && github.event.ref == 'master'
     runs-on: ubuntu-latest
     steps:
 
@@ -15,7 +15,7 @@ jobs:
     - name: Copy Repository Contents
       uses: actions/checkout@v2
 
-    - name: modify files
+    - name: Modify files
       run: |
         import re, os
         from pathlib import Path
@@ -28,13 +28,11 @@ jobs:
         readme_template_path = Path('_fastpages_docs/README_TEMPLATE.md')
         readme_path = Path('README.md')
         config_path = Path('_config.yml')
-        pr_msg_path = Path('_fastpages_docs/_setup_pr_template.md')
         settings = Path('_action_files/settings.ini')
 
         assert readme_template_path.exists(), 'Did not find _fastpages_docs/README_TEMPLATE.md in the current directory!'
         assert readme_path.exists(), 'Did not find README.md in the current directory!'
         assert config_path.exists(), 'Did not find _config.yml in the current directory!'
-        assert pr_msg_path.exists(), 'Did not find _fastpages_docs/_setup_pr_template.md in the current directory!'
         assert settings.exists(), 'Did not find _action_files/settings.ini in the current directory!'
 
         # edit settings.ini file to inject baseurl
@@ -56,16 +54,12 @@ jobs:
         cfg = re.sub('UA-57531313-5', '', cfg, flags=re.MULTILINE)
         config_path.write_text(cfg)
 
-        # prepare the pr message
-        pr = pr_msg_path.read_text().replace('{_username_}', username).replace('{_repo_name_}', repo_name).replace('{_baseurl_}', baseurl)
-        pr_msg_path.write_text(pr)
       shell: python
 
-    - name: commit changes
+    - name: Commit and push changes
       run: |
-        git config --global user.email "${GH_EMAIL}"
-        git config --global user.name "${GH_USERNAME}"
-        git checkout -B fastpages-automated-setup
+        git config user.name github-actions
+        git config user.email github-actions@github.com
         git rm CNAME action.yml
         git rm _notebooks/2020-02-21-introducing-fastpages.ipynb
         git rm _notebooks/2020-09-01-fastcore.ipynb || true
@@ -79,23 +73,4 @@ jobs:
         git rm _word/*.docx
         git add _config.yml README.md _fastpages_docs/ _action_files/settings.ini
         git commit -m 'Setup repo'
-        git push -f --set-upstream origin fastpages-automated-setup
-      env:
-        GH_EMAIL: ${{ github.event.commits[0].author.email }}
-        GH_USERNAME: ${{ github.event.commits[0].author.username }}
-
-    - name: Open a PR
-      uses: actions/github-script@0.5.0
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          var fs = require('fs');
-          var contents = fs.readFileSync('_fastpages_docs/_setup_pr_template.md', 'utf8');
-          github.pulls.create({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        title: 'Initial Setup',
-                        head: 'fastpages-automated-setup',
-                        base: 'master',
-                        body: `${contents}`
-                        })
+        git push

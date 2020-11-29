@@ -85,11 +85,10 @@ See below for a more detailed list of features.
 ## Setup Instructions
 
 1. Generate a copy of this repo by clicking [on this link](https://github.com/fastai/fastpages/generate).
-   - Recall, **to select the checkbox `Include all branches`**.
 
-2. Navigate to your repo Settings tab, and in the GitHub Pages section, enable `gh-pages` as your Source branch.
+2. Wait for ~30 seconds, until your site is built and deployed.
 
-3. After ~30 seconds, your site will be deployed and accessible.
+3. Navigate to your repo Settings tab, and in the GitHub Pages section, enable `gh-pages` as your Source branch. Click Save.
 
 
 For a live walk-through of the setup steps (with some additional tips) see this [video tutorial of setting up a fastpages blog](https://youtu.be/L0boq3zqazI) by Abdul Majed.
